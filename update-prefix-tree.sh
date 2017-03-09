@@ -18,6 +18,9 @@ else
 	git clone -q --depth 1 git://anongit.gentoo.org/repo/proj/prefix.git prefix-tree
 fi
 
+mkdir -p prefix-tree/metadata
+echo 'thin-manifests = true' > prefix-tree/metadata/layout.conf
+
 [[ -e distfiles-prefix-tree-${DATE} ]] || python "${SCRIPTSDIR}"/find-prefix-tree-distfiles.py prefix-tree "${GX86}" > distfiles-prefix-tree-${DATE}
 
 for file in distfiles-prefix-tree-*; do
