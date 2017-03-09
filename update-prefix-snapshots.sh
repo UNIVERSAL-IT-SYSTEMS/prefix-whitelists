@@ -9,7 +9,7 @@ latest=
 snapshots=
 
 for file in $(
-wget http://prefix.gentooexperimental.org/distfiles/ -O- -o /dev/null |
+wget http://dev.gentoo.org/~grobian/distfiles/ -O- -o /dev/null |
 grep -E 'prefix-overlay-[0-9]*.tar.bz2' |
 sed -e 's/^.*<a href="\(prefix-overlay-[0-9]*.tar.bz2\)">.*$/\1/'
 ); do
@@ -36,7 +36,7 @@ for snapshot in $snapshots; do
 		rm -rf $dir
 		mkdir $dir
 		cd $dir
-		wget http://prefix.gentooexperimental.org/distfiles/prefix-overlay-$snapshot.tar.bz2 -o /dev/null
+		wget http://dev.gentoo.org/~grobian/distfiles/prefix-overlay-$snapshot.tar.bz2 -o /dev/null
 		tar xf prefix-overlay-$snapshot.tar.bz2
 		rm prefix-overlay-$snapshot.tar.bz2
 		
