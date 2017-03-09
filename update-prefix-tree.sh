@@ -9,11 +9,13 @@ DATE=$(date +%Y%m%d)
 
 if [[ -e prefix-tree ]]; then
 	cd prefix-tree
-	hg pull -q
-	hg update -q
+	git clean -q -d -f
+	git clean -q -d -f -X
+	git fetch -q
+	git checkout -q -f origin/master
 	cd ..
 else
-	hg clone http://prefix.gentooexperimental.org/hg/prefix-tree -q
+	git clone -q --depth 1 git://anongit.gentoo.org/repo/proj/prefix.git prefix-tree
 fi
 
 [[ -e distfiles-prefix-tree-${DATE} ]] || python "${SCRIPTSDIR}"/find-prefix-tree-distfiles.py prefix-tree "${GX86}" > distfiles-prefix-tree-${DATE}
