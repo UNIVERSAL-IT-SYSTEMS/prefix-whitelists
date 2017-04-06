@@ -9,13 +9,13 @@ export PYTHONPATH=/space/prefix-whitelists/portage/usr/lib/portage/pym:$PYTHONPA
 
 cd "${HOMEDIR}"
 
-bash "${SCRIPTSDIR}"/update-prefix-tree.sh
-bash "${SCRIPTSDIR}"/update-prefix-snapshots.sh
+bash "${SCRIPTSDIR}"/update-prefix-tree.sh || exit 1
+bash "${SCRIPTSDIR}"/update-prefix-snapshots.sh || exit 2
 
 [[ -e $WHITELISTDIR/prefix-tree ]] && mv $WHITELISTDIR/prefix-tree $WHITELISTDIR/prefix-tree.old
-cp prefix-tree-whitelist $WHITELISTDIR/prefix-tree
+cp -f prefix-tree-whitelist $WHITELISTDIR/prefix-tree
 rm -f $WHITELISTDIR/prefix-tree.old
 
 [[ -e $WHITELISTDIR/prefix-bootstrap-snapshot ]] && mv $WHITELISTDIR/prefix-bootstrap-snapshot $WHITELISTDIR/prefix-bootstrap-snapshot.old
-cp prefix-bootstrap-snapshot-whitelist $WHITELISTDIR/prefix-bootstrap-snapshot
+cp -f prefix-bootstrap-snapshot-whitelist $WHITELISTDIR/prefix-bootstrap-snapshot
 rm -f $WHITELISTDIR/prefix-bootstrap-snapshot.old
